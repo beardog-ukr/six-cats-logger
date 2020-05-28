@@ -42,6 +42,25 @@ BasicC6MacroDemo::~BasicC6MacroDemo() {
   // but it's required for shared_ptr usage
 }
 
+void BasicC6MacroDemo::showNoEvaluationFeature() {
+  SixCatsLogger* c6custom = new SixCatsLogger(SixCatsLogger::Info);
+
+  string partOne = "I'll have two number ";
+  int partTwo = 9;
+
+  cout << outputPrefix
+       << "Special test: nothing will appear between this line and next one" << endl;
+
+  //Note: getPartThreeSpecial() prints something to cout, but it will not be called
+  // so nothing will be printed until "next line"
+
+  C6_D3(c6custom, partOne, partTwo, getPartThreeSpecial());
+
+  cout << outputPrefix << "Special test: this is \"next\" line" << endl;
+
+  delete c6custom;
+}
+
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 void BasicC6MacroDemo::showInfoMacro() {

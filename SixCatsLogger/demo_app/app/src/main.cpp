@@ -280,6 +280,9 @@ int main(int argc, char *argv[]) {
   bmd.showTraceMacro();
   bmd.showFloodMacro();
 
+  bmd.showNoEvaluationFeature();
+
+
   // showSimplest(appSettings.logLevel);
   // showMethodName(appSettings.logLevel);
   // showLambda(appSettings.logLevel);

@@ -14,6 +14,8 @@ public:
   void showTraceMacro();
   void showFloodMacro();
 
+  void showNoEvaluationFeature();
+
 protected:
   std::shared_ptr<SixCatsLogger> c6;
 };
