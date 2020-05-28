@@ -24,6 +24,26 @@ public:
   SixCatsLogger(LogLevel logLevel);
   virtual ~SixCatsLogger();
 
+  inline bool warningEnabled() const {
+    return (Warning <= logLevel);
+  }
+
+  inline bool infoEnabled() const {
+    return (Info <= logLevel);
+  }
+
+  inline bool debugEnabled() const {
+    return (Debug <= logLevel);
+  }
+
+  inline bool traceEnabled() const {
+    return (Trace <= logLevel);
+  }
+
+  inline bool floodEnabled() const {
+    return (Flood <= logLevel);
+  }
+
   void setLogLevel(LogLevel logLevel);
 
   void c(const std::string& message);
