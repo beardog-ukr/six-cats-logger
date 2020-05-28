@@ -1,0 +1,12 @@
+
+cmake_minimum_required(VERSION 3.14)
+
+add_library(command_line_options_processor STATIC)
+target_sources(command_line_options_processor PUBLIC  include/CLOptionsProcessor.h)
+target_sources(command_line_options_processor PRIVATE src/CLOptionsProcessor.cpp)
+
+target_include_directories(command_line_options_processor PUBLIC include)
+
+
+target_compile_features(command_line_options_processor PRIVATE cxx_final)
+target_compile_features(command_line_options_processor PRIVATE cxx_range_for)
