@@ -2,3 +2,4 @@
 
 add_subdirectory(app)
 add_subdirectory(command_line_options_processor)
+add_subdirectory(basic_macro_demo)

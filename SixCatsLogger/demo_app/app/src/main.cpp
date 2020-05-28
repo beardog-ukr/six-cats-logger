@@ -1,6 +1,8 @@
 #include "CLOptionsProcessor.h"
 #include "SixCatsLogger.h"
 
+#include "BasicC6MacroDemo.h"
+
 #include <iostream> // cout
 #include <cstdlib> // exit
 #include <string> // stoi
@@ -84,7 +86,7 @@ void processCommandLineOptions(int argc, char *argv[], AppSettings& appSettings)
     //https://stackoverflow.com/questions/194465/how-to-parse-a-string-to-an-int-in-c/6154614#6154614
 
     if ((intLL < 0)||(intLL>=6)) {
-      cout << "Error: incorrect logl level value" << endl;
+      cout << "Error: incorrect log level value" << endl;
       exit(1);
     }
 
@@ -100,29 +102,39 @@ void processCommandLineOptions(int argc, char *argv[], AppSettings& appSettings)
 
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
-void training1(SixCatsLogger* c6) {
+// string getPartThree() {
+//   cout << "This should be never printed" << endl;
+//   return "s, a number ";
+// }
 
-  int xpos = 5;
-  int ypos = 10;
 
-  // C6_D("X pos is ", xpos, " and ypos is ", ypos);
-  // C6_Dc(c6, "X pos is ", xpos, " and ypos is ", ypos);
+// string getPartThreeSpecial() {
+//   cout << "This should be never printed" << endl;
+//   return "s, a number ";
+// }
 
-  //C6_D1(xpos);
+// void showMacro() {
 
-  //
+//   string partOne = "I'll have two number ";
+//   int partTwo = 9;
+//   //string partThree = "s, a number ";
+//   //int partFour = 9;
+//   //string restStr =  " large ...";
 
-  {
-    auto v1 = xpos;
+//   SixCatsLogger* c6 = new SixCatsLogger(SixCatsLogger::Debug);
 
-    std::function<std::string()> mmf = [v1]() -> std::string {
-                                         ostringstream ss;
-                                         ss << v1;
-                                         return ss.str();
-                                       };
-    c6->c( __c6_MN__, mmf);
-  }
-}
+//   C6_D1(c6, partOne);
+//   C6_D2(c6, partOne, partTwo);
+//   C6_D3(c6, partOne, partTwo, getPartThree());
+//   C6_D4(c6, partOne, partTwo, getPartThree(), 3*3);
+//   C6_D5(c6, partOne, partTwo, getPartThree(), 3*3, " large <etc>");
+
+//   C6_D2(c6, partOne, getPartThree());
+//   c6->setLogLevel(SixCatsLogger::Info);
+//   C6_D2(c6, partOne, getPartThree());
+
+//   delete c6;
+// }
 
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
@@ -260,10 +272,18 @@ int main(int argc, char *argv[]) {
 
   processCommandLineOptions(argc, argv, appSettings);
 
-  showSimplest(appSettings.logLevel);
-  showMethodName(appSettings.logLevel);
-  showLambda(appSettings.logLevel);
-  showLambdaAndMethodName(appSettings.logLevel);
+  BasicC6MacroDemo bmd(appSettings.logLevel);
+
+  bmd.showWarningMacro();
+  bmd.showInfoMacro();
+  bmd.showDebugMacro();
+  bmd.showTraceMacro();
+  bmd.showFloodMacro();
+
+  // showSimplest(appSettings.logLevel);
+  // showMethodName(appSettings.logLevel);
+  // showLambda(appSettings.logLevel);
+  // showLambdaAndMethodName(appSettings.logLevel);
 
   return 0;
 }
