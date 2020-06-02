@@ -3,7 +3,7 @@
 #include <iostream> // cout
 using namespace std;
 
-#define LOCAL_C6_DEBUG 1
+//#define LOCAL_C6_DEBUG 1
 
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
