@@ -2,6 +2,7 @@
 #include "SixCatsLogger.h"
 
 #include "BasicC6MacroDemo.h"
+#include "BigSmoke.h"
 
 #include <iostream> // cout
 #include <cstdlib> // exit
@@ -102,39 +103,23 @@ void processCommandLineOptions(int argc, char *argv[], AppSettings& appSettings)
 
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
-// string getPartThree() {
-//   cout << "This should be never printed" << endl;
-//   return "s, a number ";
-// }
+void showBigSmoke(const SixCatsLogger::LogLevel logLevel, const bool missTrain) {
+  cout << "This is example of working with \"Loggable\" object:" << endl;
 
+  shared_ptr<SixCatsLogger> c6 = make_shared<SixCatsLogger>(logLevel);
 
-// string getPartThreeSpecial() {
-//   cout << "This should be never printed" << endl;
-//   return "s, a number ";
-// }
+  if (missTrain) {
+    BigSmoke smoke;
+    smoke.setLogger(c6);
 
-// void showMacro() {
+    string trainMsg = smoke.getFailedTrainMessage();
+    cout << "Some message:" << trainMsg << endl;
 
-//   string partOne = "I'll have two number ";
-//   int partTwo = 9;
-//   //string partThree = "s, a number ";
-//   //int partFour = 9;
-//   //string restStr =  " large ...";
+    //smoke object gets destroyed here
+  }
 
-//   SixCatsLogger* c6 = new SixCatsLogger(SixCatsLogger::Debug);
-
-//   C6_D1(c6, partOne);
-//   C6_D2(c6, partOne, partTwo);
-//   C6_D3(c6, partOne, partTwo, getPartThree());
-//   C6_D4(c6, partOne, partTwo, getPartThree(), 3*3);
-//   C6_D5(c6, partOne, partTwo, getPartThree(), 3*3, " large <etc>");
-
-//   C6_D2(c6, partOne, getPartThree());
-//   c6->setLogLevel(SixCatsLogger::Info);
-//   C6_D2(c6, partOne, getPartThree());
-
-//   delete c6;
-// }
+  cout << "Done with \"Loggable\" object:" << endl;
+}
 
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
@@ -282,6 +267,8 @@ int main(int argc, char *argv[]) {
 
   bmd.showNoEvaluationFeature();
 
+
+  showBigSmoke(appSettings.logLevel, true);
 
   // showSimplest(appSettings.logLevel);
   // showMethodName(appSettings.logLevel);

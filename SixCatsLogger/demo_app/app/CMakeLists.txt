@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 
 add_executable(demo_app_basic)
+target_sources(demo_app_basic PRIVATE src/BigSmoke.h)
+target_sources(demo_app_basic PRIVATE src/BigSmoke.cpp)
 target_sources(demo_app_basic PRIVATE src/main.cpp)
 
 target_link_libraries(demo_app_basic PRIVATE command_line_options_processor)
